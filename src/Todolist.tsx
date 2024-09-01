@@ -2,6 +2,13 @@ import React from "react";
 
 type TitleType = {
     title: string
+    tasks: Array<TaskType>
+}
+
+type TaskType = {
+    id: number
+    title: string
+    isDone: boolean
 }
 
 export const Todolist = (props: TitleType) => {
