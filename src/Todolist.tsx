@@ -10,6 +10,7 @@ type TitleType = {
     addTask: (title: string, todolistId: string) => void
     changeTaskStatus: (taskId: string, newStatus: boolean, todolistId: string) => void
     filter: FilterValuesType
+    removeTodolist: (todolistId: string) => void
 }
 
 type TaskType = {
@@ -43,8 +44,15 @@ export const Todolist = (props: TitleType) => {
         }
     }
 
+    const addTodolistHandler = () => {
+        props.removeTodolist(props.todolistId)
+    }
+
+
     return <div>
-        <h3>{props.title}</h3>
+        <h3>{props.title}
+        <button onClick={addTodolistHandler}>X</button>
+        </h3>
         <div>
             <input className={error ? 'error' : ''} value={title} onChange={onChangeTaskTitle} onKeyUp={addTaskOnEnter}/>
             <button onClick={addTaskHandler}>+</button>
