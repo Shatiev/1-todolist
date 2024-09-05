@@ -4,8 +4,8 @@ import {FilterValuesType} from "./App";
 type TitleType = {
     todolistId: string
     title: string
-    tasks: Array<TaskType>
-    removeTask: (taskId: string) => void
+    tasks: TaskType[]
+    removeTask: (taskId: string, todolistId: string) => void
     changeFilter: (filter: FilterValuesType, todolistId: string) => void
     addTask: (title: string) => void
     changeTaskStatus: (taskId: string, newStatus: boolean) => void
@@ -54,7 +54,7 @@ export const Todolist = (props: TitleType) => {
             {props.tasks.map(el => {
 
                 const removeTaskHandler = () => {
-                    props.removeTask(el.id)
+                    props.removeTask(el.id, props.todolistId)
                 }
 
                 const onChangeTaskStatus = (e: ChangeEvent<HTMLInputElement>) => {
