@@ -1,14 +1,15 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from "react";
-import {ValuesForFilter} from "./App";
+import {FilterValuesType} from "./App";
 
 type TitleType = {
+    todolistId: string
     title: string
     tasks: Array<TaskType>
     removeTask: (taskId: string) => void
-    filteredTasks: (filter: ValuesForFilter) => void
+    changeFilter: (filter: FilterValuesType, todolistId: string) => void
     addTask: (title: string) => void
     changeTaskStatus: (taskId: string, newStatus: boolean) => void
-    filter: ValuesForFilter
+    filter: FilterValuesType
 }
 
 type TaskType = {
@@ -69,9 +70,9 @@ export const Todolist = (props: TitleType) => {
             })}
         </ul>
         <div>
-            <button className={props.filter === 'all' ? 'active-filter' : ''} onClick={() => props.filteredTasks('all')}>All</button>
-            <button className={props.filter === 'active' ? 'active-filter' : ''} onClick={() => props.filteredTasks('active')}>Active</button>
-            <button className={props.filter === 'completed' ? 'active-filter' : ''} onClick={() => props.filteredTasks('completed')}>Completed</button>
+            <button className={props.filter === 'all' ? 'active-filter' : ''} onClick={() => props.changeFilter('all', props.todolistId)}>All</button>
+            <button className={props.filter === 'active' ? 'active-filter' : ''} onClick={() => props.changeFilter('active', props.todolistId)}>Active</button>
+            <button className={props.filter === 'completed' ? 'active-filter' : ''} onClick={() => props.changeFilter('completed', props.todolistId)}>Completed</button>
         </div>
     </div>
 }
