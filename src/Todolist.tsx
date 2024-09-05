@@ -8,7 +8,7 @@ type TitleType = {
     removeTask: (taskId: string, todolistId: string) => void
     changeFilter: (filter: FilterValuesType, todolistId: string) => void
     addTask: (title: string, todolistId: string) => void
-    changeTaskStatus: (taskId: string, newStatus: boolean) => void
+    changeTaskStatus: (taskId: string, newStatus: boolean, todolistId: string) => void
     filter: FilterValuesType
 }
 
@@ -59,7 +59,7 @@ export const Todolist = (props: TitleType) => {
 
                 const onChangeTaskStatus = (e: ChangeEvent<HTMLInputElement>) => {
                     const newTaskStatus = e.currentTarget.checked
-                    props.changeTaskStatus(el.id, newTaskStatus)
+                    props.changeTaskStatus(el.id, newTaskStatus, props.todolistId)
                 }
 
                 return (<li key={el.id} className={el.isDone ? 'is-done' : ''}>
