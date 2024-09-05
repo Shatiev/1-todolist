@@ -8,6 +8,7 @@ type TitleType = {
     filteredTasks: (filter: ValuesForFilter) => void
     addTask: (title: string) => void
     changeTaskStatus: (taskId: string, newStatus: boolean) => void
+    filter: ValuesForFilter
 }
 
 type TaskType = {
@@ -60,7 +61,7 @@ export const Todolist = (props: TitleType) => {
                     props.changeTaskStatus(el.id, newTaskStatus)
                 }
 
-                return (<li key={el.id}>
+                return (<li key={el.id} className={el.isDone ? 'is-done' : ''}>
                     <input type="checkbox" checked={el.isDone} onChange={onChangeTaskStatus}/>
                     <span>{el.title}</span>
                     <button onClick={removeTaskHandler}>X</button>
@@ -68,9 +69,9 @@ export const Todolist = (props: TitleType) => {
             })}
         </ul>
         <div>
-            <button onClick={() => props.filteredTasks('all')}>All</button>
-            <button onClick={() => props.filteredTasks('active')}>Active</button>
-            <button onClick={() => props.filteredTasks('completed')}>Completed</button>
+            <button className={props.filter === 'all' ? 'active-filter' : ''} onClick={() => props.filteredTasks('all')}>All</button>
+            <button className={props.filter === 'active' ? 'active-filter' : ''} onClick={() => props.filteredTasks('active')}>Active</button>
+            <button className={props.filter === 'completed' ? 'active-filter' : ''} onClick={() => props.filteredTasks('completed')}>Completed</button>
         </div>
     </div>
 }
